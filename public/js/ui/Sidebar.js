@@ -18,7 +18,12 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
+    const sidebarToggle = document.querySelector('.sidebar-toggle')
 
+    sidebarToggle.onclick = () => {
+      document.body.classList.toggle('sidebar-open')
+      document.body.classList.toggle('sidebar-collapse')
+    }
   }
 
   /**
