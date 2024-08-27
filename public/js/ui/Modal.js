@@ -16,7 +16,7 @@ class Modal {
       return new Error('Переданный элемент не существует')
     }
     this.element = element;
-    registerEvents();
+    this.registerEvents();
   }
 
   /**
@@ -25,10 +25,10 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    this.element.onclick = () => {
-
-      this.close()
-
+    this.element.onclick = (e) => {
+      if (e.target.closest('[data-dismiss="modal"]')) {
+        this.onClose(e)
+      }
     }
   }
 
@@ -37,7 +37,7 @@ class Modal {
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
-    e.preventDefault();
+    e.preventDefault()
     this.close();
   }
   /**
