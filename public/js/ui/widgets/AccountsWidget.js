@@ -14,7 +14,12 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-
+    if (!element){
+      return new Error('Переданный элемент не существует')
+    }
+    this.element = element;
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -25,7 +30,19 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
+    const createAccountButton = document.querySelector('.create-account');
+    const accounts = document.querySelectorAll('.account');
 
+    createAccountButton.onclick = (event) => {
+      const modalLogin = new Modal(App.getModal('createAccount').element);
+      modalLogin.open();
+    }
+
+    accounts.forEach(element => {
+      element.onclick = (event) => {
+        this.onSelectAccount(element)
+      }
+    });
   }
 
   /**
@@ -39,7 +56,22 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
+    if (!User.current()){
+      return
+    }
+    Account.list({}, (err, res) => {
+      if (err){
+        throw new Error('');
+      }
+      if (!res.success){
+        return;
+      }
 
+      this.clear()
+      
+      this.renderItem(res.data)
+    })
+    
   }
 
   /**
@@ -48,7 +80,10 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
-
+    const accounts = document.querySelectorAll('.account');
+    accounts.forEach(element => {
+      element.remove();
+    })
   }
 
   /**
@@ -59,7 +94,8 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-
+      element.classList.add('active')
+      App.showPage('transactions', { account_id: `${event.target}` })
   }
 
   /**
@@ -69,6 +105,13 @@ class AccountsWidget {
    * */
   getAccountHTML(item){
 
+    return (`
+    <li class="account">
+        <a href="#">
+            <span>${item.name}</span>
+        </a>
+    </li>  
+    `)
   }
 
   /**
@@ -78,6 +121,10 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
+
+    data.forEach(element => {
+      this.getAccountHTML(element)
+    })
 
   }
 }

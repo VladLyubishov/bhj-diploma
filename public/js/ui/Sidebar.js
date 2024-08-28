@@ -49,15 +49,7 @@ class Sidebar {
     }
 
     logoutBtn.onclick = () => {
-      console.log(User.logout((err, res) => {
-          if (err) {
-            throw new Error(err);
-          }
-          if (!res.success) {
-            return;
-          }}
-        )
-      )
+      
       User.logout((err, response) => {
         if (err) {
           return;

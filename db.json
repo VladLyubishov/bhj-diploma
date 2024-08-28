@@ -7,47 +7,16 @@
       "id": "1"
     },
     {
+      "name": "Владислав",
       "email": "test@test.ru",
       "password": "123",
-      "id": "g2pcd67om0ce02rs"
+      "id": "g2pcdbtom0dmn5eo"
     },
     {
-      "email": "test1@test.ru",
-      "password": "123",
-      "id": "g2pcd69km0ceascz"
-    },
-    {
+      "name": "Владислав",
       "email": "test2@test.ru",
       "password": "123",
-      "id": "g2pcd8n0m0cel54f"
-    },
-    {
-      "email": "test3@test.ru",
-      "password": "123",
-      "id": "g2pcd3p4m0cenqba"
-    },
-    {
-      "name": "Владислав",
-      "email": "test4@test.ru",
-      "password": "123",
-      "id": "g2pcdez4m0cfg9bk"
-    },
-    {
-      "name": "Владислав",
-      "email": "test5@test.ru",
-      "password": "123",
-      "id": "g2pcdjgm0cfhrsf"
-    },
-    {
-      "name": "Владислав",
-      "email": "test6@test.ru",
-      "password": "123",
-      "id": "g2pcdcy0m0cfsqwf"
-    },
-    {
-      "email": "test7@test.ru",
-      "password": "123",
-      "id": "g2pcdewgm0cfz8j1"
+      "id": "g2pcdwwm0dmpt00"
     }
   ],
   "accounts": [
@@ -65,6 +34,21 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "Сбер",
+      "user_id": "g2pcdbtom0dmn5eo",
+      "id": "g2pcdbecm0dv0pft"
+    },
+    {
+      "name": "Альфа",
+      "user_id": "g2pcdbtom0dmn5eo",
+      "id": "g2pcd53wm0dv2m7h"
+    },
+    {
+      "name": "Альфа2",
+      "user_id": "g2pcdbtom0dmn5eo",
+      "id": "g2pcdbocm0dv360h"
     }
   ],
   "transactions": [

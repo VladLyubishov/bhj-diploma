@@ -17,11 +17,12 @@ class LoginForm extends AsyncForm {
       if (!res.success) {
         return;
       }
+
       this.element.reset();
       App.setState('user-logged');
       const closeModal = new Modal(App.getModal('login').element)
       closeModal.close();
+
     });
-    
   }
 }

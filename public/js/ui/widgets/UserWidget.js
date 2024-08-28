@@ -27,6 +27,10 @@ class UserWidget {
    * */
   update(){
     const userName = document.querySelector('.user-name')
+    // let name = ''
+    // if (localStorage.getItem('user').email == User.current().email){
+    //   name = localStorage.getItem('user').name 
+    // }
     userName.textContent = User.current().name
   }
 }

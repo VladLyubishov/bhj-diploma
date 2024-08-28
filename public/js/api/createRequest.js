@@ -14,33 +14,34 @@ const createRequest = (options = {}) => {
 
     if (options.method == 'GET'){
 
-        xhr.open('GET', `${options.url}?mail=${options.data.email}&password=${options.data.password}&name=${options.data.name}`)
-        xhr.send()
+        xhr.open('GET', `${options.url}?mail=${options.data.email}&password=${options.data.password}`);
+        xhr.send();
 
     } else {
 
-        formData.append('email', options.data.email)
-        formData.append('password', options.data.password)
+        formData.append('email', options.data.email);
+        formData.append('password', options.data.password);
+        formData.append('name', options.data.name);
 
-        xhr.open(options.method, options.url)
-        xhr.send(formData)
+        xhr.open(options.method, options.url);
+        xhr.send(formData);
     }
 
     xhr.addEventListener('load', () => {
         if (xhr.status >= 200 && xhr.status < 300) {
             if (options.callback) {
-                options.callback(null, xhr.response)
+                options.callback(null, xhr.response);
             }
         } else {
             if (options.callback) {
-                options.callback(new Error('Ошибка запроса'), null)
+                options.callback(new Error('Ошибка запроса'), null);
             } 
         }
     })
 
     xhr.addEventListener('error', () => {
         if (options.callback) {
-            options.callback(new Error('Ошибка сервера'), null)
+            options.callback(new Error('Ошибка сервера'), null);
         }
     })
 };
