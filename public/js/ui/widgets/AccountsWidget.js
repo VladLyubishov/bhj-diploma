@@ -13,12 +13,14 @@ class AccountsWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
+
   constructor( element ) {
     if (!element){
       return new Error('Переданный элемент не существует')
     }
     this.element = element;
     this.registerEvents();
+    this.currentActiveElement = null;
     this.update();
   }
 
@@ -31,14 +33,18 @@ class AccountsWidget {
    * */
   registerEvents() {
     const createAccountButton = document.querySelector('.create-account');
-    const accounts = document.querySelectorAll('.account');
-
+   
+    
     createAccountButton.onclick = (event) => {
       const modalLogin = new Modal(App.getModal('createAccount').element);
       modalLogin.open();
     }
+  }
 
-    accounts.forEach(element => {
+  registerAccount() {
+    const accounts = document.querySelectorAll('.account');
+    
+    Array.from(accounts).forEach((element) => {
       element.onclick = (event) => {
         this.onSelectAccount(element)
       }
@@ -66,10 +72,9 @@ class AccountsWidget {
       if (!res.success){
         return;
       }
-
       this.clear()
-      
       this.renderItem(res.data)
+      this.registerAccount()
     })
     
   }
@@ -94,8 +99,12 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-      element.classList.add('active')
-      App.showPage('transactions', { account_id: `${event.target}` })
+    if (this.currentActiveElement) {
+      this.currentActiveElement.classList.remove('active');
+    }
+    element.classList.add('active')
+    this.currentActiveElement = element;
+    App.showPage('transactions', { account_id: element.dataset.id })
   }
 
   /**
@@ -105,13 +114,14 @@ class AccountsWidget {
    * */
   getAccountHTML(item){
 
-    return (`
-    <li class="account">
+    return `
+    <li class="account" data-id="${item.id}">
         <a href="#">
-            <span>${item.name}</span>
+            <span>${item.name}</span> / 
+            <span>${item.sum} ₽</span>
         </a>
     </li>  
-    `)
+    `
   }
 
   /**
@@ -123,7 +133,7 @@ class AccountsWidget {
   renderItem(data){
 
     data.forEach(element => {
-      this.getAccountHTML(element)
+      this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(element));
     })
 
   }

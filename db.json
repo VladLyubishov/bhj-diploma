@@ -17,6 +17,12 @@
       "email": "test2@test.ru",
       "password": "123",
       "id": "g2pcdwwm0dmpt00"
+    },
+    {
+      "name": "Владислав",
+      "email": "test1@test.ru",
+      "password": "123",
+      "id": "g2pcd52sm0eyuj1c"
     }
   ],
   "accounts": [
@@ -49,6 +55,16 @@
       "name": "Альфа2",
       "user_id": "g2pcdbtom0dmn5eo",
       "id": "g2pcdbocm0dv360h"
+    },
+    {
+      "name": "Тинькоф",
+      "user_id": "g2pcdbtom0dmn5eo",
+      "id": "g2pcd1lgm0f0jtfn"
+    },
+    {
+      "name": "Тинькоф",
+      "user_id": "g2pcdwwm0dmpt00",
+      "id": "g2pcd4gsm0f0kikb"
     }
   ],
   "transactions": [

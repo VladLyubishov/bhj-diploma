@@ -63,7 +63,7 @@ class User {
       data,
       callback: (err, response) => {
         if (response && response.user) {
-          this.setCurrent(data);
+          this.setCurrent(response.user);
         }
         callback(err, response);
       }
@@ -83,7 +83,7 @@ class User {
       data,
       callback: (err, response) => {
         if (response && response.user) {
-          this.setCurrent(data);
+          this.setCurrent(response.user);
         }
         callback(err, response);
       }

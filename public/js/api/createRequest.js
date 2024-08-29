@@ -5,8 +5,8 @@
 const createRequest = (options = {}) => {
 
     const xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
     const formData = new FormData();
+    xhr.responseType = 'json';
 
     if (!options.data) {
         return new FormData();
