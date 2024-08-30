@@ -2,10 +2,23 @@
  * Основная функция для совершения запросов
  * на сервер.
  * */
+const buildFormData = (data) => {
+    if (!data) {
+        return new FormData();
+    }
+    const formData = new FormData();
+
+    for (const key in data) {
+        formData.append(key, data[key]);
+    }
+
+    return formData;
+};
+
+
 const createRequest = (options = {}) => {
 
     const xhr = new XMLHttpRequest();
-    const formData = new FormData();
     xhr.responseType = 'json';
 
     if (!options.data) {
@@ -19,12 +32,10 @@ const createRequest = (options = {}) => {
 
     } else {
 
-        formData.append('email', options.data.email);
-        formData.append('password', options.data.password);
-        formData.append('name', options.data.name);
+        const newFormData = buildFormData(options.data)  
 
         xhr.open(options.method, options.url);
-        xhr.send(formData);
+        xhr.send(newFormData);
     }
 
     xhr.addEventListener('load', () => {
@@ -45,3 +56,4 @@ const createRequest = (options = {}) => {
         }
     })
 };
+

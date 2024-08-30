@@ -11,18 +11,6 @@
       "email": "test@test.ru",
       "password": "123",
       "id": "g2pcdbtom0dmn5eo"
-    },
-    {
-      "name": "Владислав",
-      "email": "test2@test.ru",
-      "password": "123",
-      "id": "g2pcdwwm0dmpt00"
-    },
-    {
-      "name": "Владислав",
-      "email": "test1@test.ru",
-      "password": "123",
-      "id": "g2pcd52sm0eyuj1c"
     }
   ],
   "accounts": [
@@ -42,29 +30,9 @@
       "id": "3"
     },
     {
-      "name": "Сбер",
-      "user_id": "g2pcdbtom0dmn5eo",
-      "id": "g2pcdbecm0dv0pft"
-    },
-    {
       "name": "Альфа",
       "user_id": "g2pcdbtom0dmn5eo",
-      "id": "g2pcd53wm0dv2m7h"
-    },
-    {
-      "name": "Альфа2",
-      "user_id": "g2pcdbtom0dmn5eo",
-      "id": "g2pcdbocm0dv360h"
-    },
-    {
-      "name": "Тинькоф",
-      "user_id": "g2pcdbtom0dmn5eo",
-      "id": "g2pcd1lgm0f0jtfn"
-    },
-    {
-      "name": "Тинькоф",
-      "user_id": "g2pcdwwm0dmpt00",
-      "id": "g2pcd4gsm0f0kikb"
+      "id": "g2pcdeq0m0ghsio6"
     }
   ],
   "transactions": [
@@ -202,6 +170,102 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "g2pcd8cgm0gothau",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T12:25:55.157Z"
+    },
+    {
+      "id": "g2pcdausm0gou37l",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T12:26:23.552Z"
+    },
+    {
+      "id": "g2pcd94sm0gowqka",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T12:28:27.129Z"
+    },
+    {
+      "id": "g2pcd8asm0gox0ar",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T12:28:39.746Z"
+    },
+    {
+      "id": "g2pcd9ocm0goxnhl",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T12:29:09.800Z"
+    },
+    {
+      "id": "g2pcd6h8m0gp0el8",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T12:31:18.235Z"
+    },
+    {
+      "id": "g2pcd6nom0gr8xdl",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T13:33:55.064Z"
+    },
+    {
+      "id": "g2pcd19wm0gr9cck",
+      "type": "expense",
+      "name": "Владислав",
+      "sum": 123,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T13:34:14.467Z"
+    },
+    {
+      "id": "g2pcdessm0gr9q08",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T13:34:32.167Z"
+    },
+    {
+      "id": "g2pcd8xom0grah1t",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T13:35:07.216Z"
+    },
+    {
+      "id": "g2pcd790m0greayf",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T13:38:05.942Z"
+    },
+    {
+      "id": "g2pcd564m0grejst",
+      "type": "income",
+      "name": "Зп",
+      "sum": 100000,
+      "user_id": "g2pcdbtom0dmn5eo",
+      "created_at": "2024-08-30T13:38:17.404Z"
     }
   ]
 }

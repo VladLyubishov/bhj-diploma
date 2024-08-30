@@ -26,17 +26,17 @@ class TransactionsWidget {
    * */
   registerEvents() {
 
-    const newIncome = document.querySelector('#modal-new-income');
-    const newExpense = document.querySelector('#modal-new-expense');
+    const newIncome = document.querySelector('.create-income-button');
+    const newExpense = document.querySelector('.create-expense-button');
 
     newIncome.onclick = (element) => {
-      const closeModal = new Modal(App.getModal('newIncome').element)
-      closeModal.open();
+      const openModal = new Modal(App.getModal('newIncome').element)
+      openModal.open();
     }
 
-    
     newExpense.onclick = (element) => {
-      App.getModal('newExpense')
+      const openModal = new Modal(App.getModal('newExpense').element)
+      openModal.open();
     }
 
   }
