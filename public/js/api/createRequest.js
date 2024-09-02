@@ -15,25 +15,30 @@ const buildFormData = (data) => {
     return formData;
 };
 
-
 const createRequest = (options = {}) => {
 
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-    if (!options.data) {
-        return new FormData();
-    }
-
     if (options.method == 'GET'){
+        if (options.url.startsWith('/account')){
+            xhr.open('GET', `${options.url}`);
+        } 
+        else if (options.url.startsWith('/transaction')){
+            xhr.open('GET', `${options.url}?account_id=${options.data.account_id}`);
+        } else {
+            if(options.data?.password && options.data?.email){
+                xhr.open('GET', `${options.url}?mail=${options.data.email}&password=${options.data.password}`);
+            } else {
+                return;
+            }
+        }
 
-        xhr.open('GET', `${options.url}?mail=${options.data.email}&password=${options.data.password}`);
         xhr.send();
 
     } else {
-
         const newFormData = buildFormData(options.data)  
-
+        
         xhr.open(options.method, options.url);
         xhr.send(newFormData);
     }

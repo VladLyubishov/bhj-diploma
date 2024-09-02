@@ -17,6 +17,7 @@ class TransactionsPage {
     
     this.element = element;
     this.registerEvents();
+    this.content = this.element.querySelector('.content');
   }
 
   /**
@@ -33,16 +34,29 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
-    const removeAccount = document.querySelector('.remove-account')
-    const removeTransaction = document.querySelector('.transaction__remove')
+    this.removeTransactionButtons();
+    this.removeAccountButtons();
+  }
+
+  removeAccountButtons() {
+    const removeAccount = document.querySelectorAll('.remove-account')
    
-    removeAccount.onclick = (event) => {
-      this.removeAccount();
-    }
-    
-    // removeTransaction.onclick = (event) => {
-    //   this.removeTransaction();
-    // }
+    removeAccount.forEach((btn) => {
+      btn.onclick = () => {
+        this.removeAccount();
+      }
+    })
+  }
+
+  removeTransactionButtons() {
+    const removeTransactions = document.querySelectorAll('.transaction__remove');
+  
+
+    removeTransactions.forEach((btn) => {
+      btn.onclick = () => {
+        this.removeTransaction(btn.dataset);
+      };
+    });
   }
 
   /**
@@ -60,18 +74,18 @@ class TransactionsPage {
     }
 
     let ask = confirm("Вы действительно хотите удалить счёт?");
-    alert(ask);
 
     if(ask){
-      Account.remove({}, (err, res) => {
+      Account.remove({id: this.lastOptions.account_id}, (err, res) => {
         if (err){
-          throw new Error('');
+          throw new Error('Ошибка сервера');
         }
         if (!res.success){
-          return;
+          throw new Error('Ошибка запроса');
         }
         App.updateWidgets();
         App.updateForms();
+        this.clear();
       })
     }
   }
@@ -84,17 +98,16 @@ class TransactionsPage {
    * */
   removeTransaction( id ) {
     let ask = confirm("Вы действительно хотите удалить счёт?");
-    alert(ask);
     
     if(ask){
-      remove(id, (err, res) => {
+      Transaction.remove(id, (err, res) => {
         if(err){
-          throw new Error('');
+          throw new Error('Ошибка сервера');
         }
         if(!res.success){
-          return;
+          throw new Error('Ошибка запроса');
         }
-        App.update()
+        App.update();
       })
     }
   }
@@ -114,20 +127,20 @@ class TransactionsPage {
     
     Account.get(options.account_id, (err, res) => {
       if (err){
-        throw new Error('');
+        throw new Error('Ошибка сервера');
       }
       if (!res.success){
-        return;
+        throw new Error('Ошибка запроса');
       }
       this.renderTitle(res.data.name);
     });
 
     Transaction.list(options, (err, res) => {
       if (err) {
-        throw new Error(err);
+        throw new Error('Ошибка сервера');
       }
       if (!res.success) {
-        return;
+        throw new Error('Ошибка запроса');
       }
       this.renderTransactions(res.data);
     });
@@ -148,7 +161,7 @@ class TransactionsPage {
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle(name){
-    const contentTitle = document.querySelector('.content-title')
+    const contentTitle = document.querySelector('.content-title');
     contentTitle.textContent = name;
   }
 
@@ -164,7 +177,7 @@ class TransactionsPage {
       "июля", "августа", "сентября", "октября", "ноября", "декабря"
     ];
   
-    const day = ddateStringate.getDate();
+    const day = dateString.getDate();
     const month = monthNames[dateString.getMonth()];
     const year = dateString.getFullYear();
     const hours = dateString.getHours();
@@ -203,7 +216,7 @@ class TransactionsPage {
             </button>
         </div>
       </div>
-    `)
+    `);
   }
 
   /**
@@ -211,9 +224,8 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    const content = document.querySelector('.content');
-    data.forEach(element => {
-      content.insertAdjacentElement('beforeEnd', this.getTransactionHTML(element))
-    });
+    const markup = data.reduce((prev, item) => prev + this.getTransactionHTML(item), '');
+    this.content.innerHTML = markup;
+    this.removeTransactionButtons();
   }
 }

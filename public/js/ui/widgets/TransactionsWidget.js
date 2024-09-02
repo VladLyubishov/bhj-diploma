@@ -12,9 +12,6 @@ class TransactionsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-    if (!element){
-      return new Error('Переданный элемент не существует');
-    }
     this.element = element;
     this.registerEvents();
   }
@@ -25,19 +22,17 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
-
     const newIncome = document.querySelector('.create-income-button');
     const newExpense = document.querySelector('.create-expense-button');
 
     newIncome.onclick = (element) => {
-      const openModal = new Modal(App.getModal('newIncome').element)
+      const openModal = new Modal(App.getModal('newIncome').element);
       openModal.open();
     }
 
     newExpense.onclick = (element) => {
-      const openModal = new Modal(App.getModal('newExpense').element)
+      const openModal = new Modal(App.getModal('newExpense').element);
       openModal.open();
     }
-
   }
 }

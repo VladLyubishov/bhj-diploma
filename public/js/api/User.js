@@ -10,7 +10,6 @@ class User {
    * локальном хранилище.
    * */
   static setCurrent(user) {
-    console.log(user)
     localStorage.setItem('user', JSON.stringify(user));
   }
 
@@ -19,7 +18,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-    localStorage.removeItem('user')
+    localStorage.removeItem('user');
   }
 
   /**
@@ -27,8 +26,8 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    const currentUser = localStorage.getItem('user')
-    return currentUser? JSON.parse(currentUser) : undefined
+    const currentUser = localStorage.getItem('user');
+    return currentUser? JSON.parse(currentUser) : undefined;
   }
 
   /**

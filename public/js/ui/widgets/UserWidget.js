@@ -13,9 +13,9 @@ class UserWidget {
    * */
   constructor(element){
     if(!element){
-      throw new Error('Пользователь не существует')
+      throw new Error('Пользователь не существует');
     }
-    this.element = element
+    this.element = element;
   }
 
   /**
@@ -26,12 +26,11 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
-
     if(!User.current()){
-      return
+      throw new Error('Пользователь не найден');
     }
 
-    const userName = document.querySelector('.user-name')
-    userName.textContent = User.current().name
+    const userName = document.querySelector('.user-name');
+    userName.textContent = User.current().name;
   }
 }

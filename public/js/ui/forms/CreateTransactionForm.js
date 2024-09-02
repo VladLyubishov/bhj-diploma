@@ -21,10 +21,10 @@ class CreateTransactionForm extends AsyncForm {
 
     Account.list({}, (err, res) => {
       if (err){
-        throw new Error('');
+        throw new Error('Ошибка сервера');
       }
       if (!res.success){
-        return;
+        throw new Error('Ошибка запроса');
       }
       accountsSelects.forEach(select => {
         for(var i = select.options.length - 1; i >= 0; i--) {
@@ -48,17 +48,16 @@ class CreateTransactionForm extends AsyncForm {
   onSubmit(data) {
     Transaction.create(data, (err, res) => {
       if (err){
-        throw new Error('');
+        throw new Error('Ошибка сервера');
       }
       if (!res.success){
-        return;
+        throw new Error('Ошибка запроса');
       }
-      
-      App.update()
       this.element.reset();
-      const modalName = this.element.closest('.modal').dataset.modalId
-      const closeModal = new Modal(App.getModal(modalName).element)
+      const modalName = this.element.closest('.modal').dataset.modalId;
+      const closeModal = new Modal(App.getModal(modalName).element);
       closeModal.close();
+      App.update();
     })
   }
 }

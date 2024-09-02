@@ -33,8 +33,7 @@ class AccountsWidget {
    * */
   registerEvents() {
     const createAccountButton = document.querySelector('.create-account');
-   
-    
+
     createAccountButton.onclick = (event) => {
       const modalLogin = new Modal(App.getModal('createAccount').element);
       modalLogin.open();
@@ -67,14 +66,14 @@ class AccountsWidget {
     }
     Account.list({}, (err, res) => {
       if (err){
-        throw new Error('');
+        throw new Error('Ошибка сервера');
       }
       if (!res.success){
-        return;
+        throw new Error('Ошибка запроса');
       }
-      this.clear()
-      this.renderItem(res.data)
-      this.registerAccount()
+      this.clear();
+      this.renderItem(res.data);
+      this.registerAccount();
     })
     
   }
@@ -102,9 +101,9 @@ class AccountsWidget {
     if (this.currentActiveElement) {
       this.currentActiveElement.classList.remove('active');
     }
-    element.classList.add('active')
+    element.classList.add('active');
     this.currentActiveElement = element;
-    App.showPage('transactions', { account_id: element.dataset.id })
+    App.showPage('transactions', { account_id: element.dataset.id });
   }
 
   /**
@@ -114,14 +113,14 @@ class AccountsWidget {
    * */
   getAccountHTML(item){
 
-    return `
+    return (`
     <li class="account" data-id="${item.id}">
         <a href="#">
             <span>${item.name}</span> / 
             <span>${item.sum} ₽</span>
         </a>
     </li>  
-    `
+    `);
   }
 
   /**
@@ -131,10 +130,8 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
-
     data.forEach(element => {
       this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(element));
-    })
-
+    });
   }
 }

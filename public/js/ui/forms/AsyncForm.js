@@ -26,8 +26,8 @@ class AsyncForm {
    * */
   registerEvents() {
     this.element.onsubmit = (event) => {
-      event.preventDefault()
-      this.submit()
+      event.preventDefault();
+      this.submit();
     }
   }
 
@@ -40,10 +40,14 @@ class AsyncForm {
    * */
   getData() {
     let data = {}
-    const inputs = this.element.querySelectorAll('input')
+    const inputs = this.element.querySelectorAll('input');
     inputs.forEach(element => {
-      data[element.getAttribute('name')] = element.value
+      data[element.getAttribute('name')] = element.value;
     });
+    const selectElement = this.element.querySelector('select[name="account_id"]');
+    if (selectElement) {
+      data['account_id'] = selectElement.value;
+    } 
     return data;
   }
 
@@ -56,6 +60,6 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    this.onSubmit(this.getData())
+    this.onSubmit(this.getData());
   }
 }
