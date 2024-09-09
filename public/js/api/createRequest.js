@@ -26,6 +26,9 @@ const createRequest = (options = {}) => {
         } 
         else if (options.url.startsWith('/transaction')){
             xhr.open('GET', `${options.url}?account_id=${options.data.account_id}`);
+        } 
+        else if(options.url.startsWith('/user')){
+            xhr.open('GET', `${options.url}`);
         } else {
             if(options.data?.password && options.data?.email){
                 xhr.open('GET', `${options.url}?mail=${options.data.email}&password=${options.data.password}`);
@@ -33,7 +36,7 @@ const createRequest = (options = {}) => {
                 return;
             }
         }
-
+        
         xhr.send();
 
     } else {
